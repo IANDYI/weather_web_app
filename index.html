@@ -3,11 +3,18 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Застосунок "Погода"</title>
+        <title>Погода</title>
+        <link rel="icon" type="image/x-icon" href="img/favicon.png" />
         <link rel="stylesheet" href="style.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     </head>
     <body>
+        <header>
+            <nav class="nav-container">
+                <img src="img/clouds.png" />
+                <p>Погода</p>
+            </nav>
+        </header>
         <div class="card">
             <div class="search">
                 <input type="text" placeholder="вкажіть місто" spellcheck="false" />
@@ -37,6 +44,11 @@
                 </div>
             </div>
         </div>
+        <footer>
+            <a id="github-link" href="https://github.com/IANDYI" target="_blank">
+                <img id="github-icon" alt="IANDYI link" src="img/github.svg" />
+            </a>
+        </footer>
         <script>
             const apiKey = "ce73ede811765a1fe49ba6f02dea4736";
             const apiUrl = "https://api.openweathermap.org/data/2.5/weather?&lang=ua&units=metric";

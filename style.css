@@ -8,6 +8,24 @@
 
 body {
     background-color: #342e37;
+    min-height: 100vh;
+}
+
+.nav-container {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    padding: 0.5em;
+    background: linear-gradient(135deg, #28afb0, #a167a5);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.nav-container img {
+    width: 3em;
+}
+
+.nav-container p {
+    font-size: 18px;
 }
 
 .card {
@@ -15,10 +33,11 @@ body {
     max-width: 470px;
     background: linear-gradient(135deg, #28afb0, #a167a5);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-    margin: 2em auto 0;
+    margin: 0 auto;
     padding: 40px 35px;
     border-radius: 20px;
     text-align: center;
+    margin-top: 2em;
 }
 
 .search {
@@ -96,6 +115,26 @@ body {
 .wind {
     font-size: 28px;
     margin-top: -6px;
+}
+
+footer {
+    position: sticky;
+    top: 100%;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background-color: #ebfffc;
+    height: 3em;
+}
+
+#github-link {
+    cursor: pointer;
+    margin: 0 auto;
+}
+#github-icon {
+    height: 1.5em;
+    margin-right: 1.5em;
 }
 
 @media only screen and (max-width: 480px) {
