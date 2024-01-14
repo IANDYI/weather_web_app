@@ -39,6 +39,7 @@ body {
     font-size: 18px;
     margin-right: 1em;
     flex: 1;
+    flex-shrink: 1;
 }
 
 .search button {
@@ -98,6 +99,14 @@ body {
 }
 
 @media only screen and (max-width: 480px) {
+    .search {
+        height: 5em;
+        flex-direction: column;
+        gap: 1em;
+    }
+    .search input {
+        width: 90%;
+    }
     .details {
         flex-direction: column;
         gap: 2em;
