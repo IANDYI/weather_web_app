@@ -43,17 +43,35 @@
 
             const searchBox = document.querySelector(".search input");
             const searchBtn = document.querySelector(".search button");
+            const weatherIcon = document.querySelector(".weather-icon");
 
             async function checkWeather(city) {
                 const response = await fetch(apiUrl + `&q=${city}` + `&appid=${apiKey}`);
-                var data = await response.json();
 
-                console.log(data);
+                console.log(response);
+
+                const weatherConditions = {
+                    Clouds: "clouds.png",
+                    Clear: "clear.png",
+                    Rain: "rain.png",
+                    Drizzle: "drizzle.png",
+                    Mist: "mist.png",
+                    Snow: "snow.png",
+                };
+
+                var data = await response.json();
 
                 document.querySelector(".city").innerHTML = data.name;
                 document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°с";
                 document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
                 document.querySelector(".wind").innerHTML = data.wind.speed + " км/год";
+
+                const weatherMain = data.weather[0].main;
+                if (weatherConditions.hasOwnProperty(weatherMain)) {
+                    weatherIcon.src = "img/" + weatherConditions[weatherMain];
+                } else {
+                    weatherIcon.src = "img/default.png";
+                }
             }
 
             searchBtn.addEventListener("click", () => {
