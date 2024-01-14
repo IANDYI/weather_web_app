@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Застосунок "Погода"</title>
+        <link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    </head>
+    <body>
+        <div class="card">
+            <div class="search">
+                <input type="text" placeholder="вкажіть місто" spellcheck="false" />
+                <button>
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+            <div class="weather">
+                <img src="img/clear.png" class="weather-icon" />
+                <h1 class="temp">...°с</h1>
+                <h2 class="city">...</h2>
+                <div class="details">
+                    <div class="col">
+                        <img src="img/water-solid.svg" />
+                        <div>
+                            <p class="humidity">...%</p>
+                            <p>Вологість</p>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <img src="img/wind-solid.svg" />
+                        <div>
+                            <p class="wind">... км/год</p>
+                            <p>Вітер</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            const apiKey = "ce73ede811765a1fe49ba6f02dea4736";
+            const apiUrl = "https://api.openweathermap.org/data/2.5/weather?&lang=ua&units=metric";
+
+            const searchBox = document.querySelector(".search input");
+            const searchBtn = document.querySelector(".search button");
+
+            async function checkWeather(city) {
+                const response = await fetch(apiUrl + `&q=${city}` + `&appid=${apiKey}`);
+                var data = await response.json();
+
+                console.log(data);
+
+                document.querySelector(".city").innerHTML = data.name;
+                document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°с";
+                document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
+                document.querySelector(".wind").innerHTML = data.wind.speed + " км/год";
+            }
+
+            searchBtn.addEventListener("click", () => {
+                if (searchBox.value.trim() != "") {
+                    checkWeather(searchBox.value.trim());
+                    searchBox.value = "";
+                }
+                searchBox.value = "";
+            });
+        </script>
+    </body>
+</html>
