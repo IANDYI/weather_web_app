@@ -37,6 +37,7 @@ header {
     width: 90%;
     max-width: 470px;
     background: linear-gradient(135deg, #28afb0, #a167a5);
+    color: #ebfffc;
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
     margin: 0 auto;
     padding: 40px 35px;
