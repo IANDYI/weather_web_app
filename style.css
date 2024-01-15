@@ -130,7 +130,7 @@ footer {
     width: 100%;
     display: flex;
     align-items: center;
-    background-color: #ebfffc;
+    background: linear-gradient(135deg, #fff, #a167a5);
     height: 3em;
 }
 
