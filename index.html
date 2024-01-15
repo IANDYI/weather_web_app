@@ -20,24 +20,26 @@
                 <input type="text" placeholder="вкажіть місто" spellcheck="false" />
                 <button>
                     <i class="fa fa-search"></i>
+                    <span>Пошук</span>
                 </button>
             </div>
+            <div class="error"><p>Місто вказане неправильно</p></div>
             <div class="weather">
                 <img src="img/clear.png" class="weather-icon" />
-                <h1 class="temp">...°с</h1>
-                <h2 class="city">...</h2>
+                <h1 class="temp"></h1>
+                <h2 class="city"></h2>
                 <div class="details">
                     <div class="col">
                         <img src="img/water-solid.svg" />
                         <div>
-                            <p class="humidity">...%</p>
+                            <p class="humidity"></p>
                             <p>Вологість</p>
                         </div>
                     </div>
                     <div class="col">
                         <img src="img/wind-solid.svg" />
                         <div>
-                            <p class="wind">... км/год</p>
+                            <p class="wind"></p>
                             <p>Вітер</p>
                         </div>
                     </div>
@@ -59,9 +61,6 @@
 
             async function checkWeather(city) {
                 const response = await fetch(apiUrl + `&q=${city}` + `&appid=${apiKey}`);
-
-                console.log(response);
-
                 const weatherConditions = {
                     Clouds: "clouds.png",
                     Clear: "clear.png",
@@ -71,18 +70,25 @@
                     Snow: "snow.png",
                 };
 
-                var data = await response.json();
-
-                document.querySelector(".city").innerHTML = data.name;
-                document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°с";
-                document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
-                document.querySelector(".wind").innerHTML = data.wind.speed + " км/год";
-
-                const weatherMain = data.weather[0].main;
-                if (weatherConditions.hasOwnProperty(weatherMain)) {
-                    weatherIcon.src = "img/" + weatherConditions[weatherMain];
+                if (response.status == 404) {
+                    document.querySelector(".error").style.display = "block";
+                    document.querySelector(".weather").style.display = "none";
                 } else {
-                    weatherIcon.src = "img/default.png";
+                    var data = await response.json();
+
+                    document.querySelector(".city").innerHTML = data.name;
+                    document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°с";
+                    document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
+                    document.querySelector(".wind").innerHTML = data.wind.speed + " км/год";
+
+                    const weatherMain = data.weather[0].main;
+                    if (weatherConditions.hasOwnProperty(weatherMain)) {
+                        weatherIcon.src = "img/" + weatherConditions[weatherMain];
+                    } else {
+                        weatherIcon.src = "img/default.png";
+                    }
+                    document.querySelector(".weather").style.display = "block";
+                    document.querySelector(".error").style.display = "none";
                 }
             }
 
