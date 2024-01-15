@@ -3,7 +3,7 @@
     margin: 0;
     padding: 0;
     font-family: "Poppins", sans-serif;
-    color: white;
+    /* color: white; */
 }
 
 body {
@@ -11,21 +11,26 @@ body {
     min-height: 100vh;
 }
 
-.nav-container {
+header {
+    background: linear-gradient(135deg, #28afb0, #a167a5);
+    color: #ebfffc;
+}
+
+.nav-list {
     display: flex;
     align-items: center;
-    gap: 1em;
-    padding: 0.5em;
-    background: linear-gradient(135deg, #28afb0, #a167a5);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    list-style: none;
+    height: 4em;
+    justify-content: space-between;
+    padding: 0 2em;
 }
 
-.nav-container img {
+.logo {
+    display: flex;
+    align-items: center;
+}
+.logo img {
     width: 3em;
-}
-
-.nav-container p {
-    font-size: 18px;
 }
 
 .card {
@@ -49,36 +54,55 @@ body {
 }
 
 .search input {
-    border: 0;
-    outline: 0;
-    background: #ebfffc;
+    height: 3em;
+    padding: 12px;
+    border-radius: 12px;
+    border: 1.5px solid lightgrey;
+    outline: none;
+    transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+    box-shadow: 0px 0px 20px -18px;
     color: #555;
-    padding: 0 16px;
-    height: 32px;
-    border-radius: 16px;
-    font-size: 18px;
+    background-color: #ebfffc;
     flex: 1;
-    flex-shrink: 1;
 }
 
-.search button {
+.search input:hover {
+    border: 2px solid lightgrey;
+    box-shadow: 0px 0px 20px -17px;
+}
+
+.search input:active {
+    transform: scale(0.95);
+}
+
+.search input:focus {
+    border: 2px solid grey;
+}
+
+.search-button {
     border: 0;
     outline: 0;
-    background: #ebfffc;
+    background-color: #ebfffc;
+    color: #555;
     border-radius: 16px;
     width: 32px;
     height: 32px;
     cursor: pointer;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    transition: background-color 0.15s, color 0.15s;
 }
 
-.search button i {
-    font-size: 18px;
-    color: #555;
+.search-button:hover {
+    background-color: #555;
+    color: #ebfffc;
 }
 
-.search button span {
+.search-button:active {
+    background-color: #181818;
+}
+
+.search-button span {
     display: none;
-    color: #555;
 }
 
 .weather-icon {
@@ -119,8 +143,9 @@ body {
 .humidity,
 .wind {
     font-size: 28px;
-    margin-top: -6px;
 }
+
+/* footer start */
 
 footer {
     margin-top: 2em;
@@ -128,19 +153,71 @@ footer {
     top: 100%;
     bottom: 0;
     width: 100%;
-    display: flex;
-    align-items: center;
-    background: linear-gradient(135deg, #fff, #a167a5);
-    height: 3em;
+    background: linear-gradient(135deg, #28afb0, #a167a5);
+    color: #ebfffc;
 }
 
-#github-link {
+.footer-list {
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 0.7em;
+}
+.git-button {
+    width: 2.5em;
+    height: 2.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background-color: transparent;
+    position: relative;
+    border-radius: 7px;
     cursor: pointer;
+    transition: all 0.3s;
+    z-index: 1;
     margin: 0 auto;
 }
-#github-icon {
-    height: 1.5em;
+
+.svg-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    backdrop-filter: blur(0px);
+    letter-spacing: 0.8px;
+    border-radius: 10px;
+    transition: all 0.3s;
+    border: 1px solid rgba(156, 156, 156, 0.466);
+    z-index: 2;
 }
+
+.BG {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: #181818;
+    z-index: 0;
+    border-radius: 10px;
+    pointer-events: none;
+    transition: all 0.3s;
+}
+
+.git-button:hover .BG {
+    transform: rotate(35deg);
+    transform-origin: bottom;
+}
+
+.git-button:hover .svg-container {
+    background-color: rgba(156, 156, 156, 0.466);
+    backdrop-filter: blur(4px);
+}
+
+/* footer end */
 
 .weather {
     display: none;
@@ -170,23 +247,17 @@ footer {
     .error {
         text-align: center;
     }
-
-    .search button {
-        background-color: #555;
-        width: 30%;
-        display: flex;
-        justify-content: space-evenly;
-        align-items: center;
-        padding: 0 1em;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    }
-
-    .search button i {
-        color: #fff;
-    }
-
-    .search button span {
-        color: #fff;
+    .search-button span {
         display: inline;
+    }
+    .search-button {
+        background-color: #555;
+        color: #ebfffc;
+        width: 100px;
+        display: flex;
+        align-items: center;
+        padding: 1em;
+        justify-content: space-evenly;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     }
 }
